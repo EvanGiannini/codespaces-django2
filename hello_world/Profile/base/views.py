@@ -22,7 +22,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 class RegisterView(View):
     form_class = RegisterForm
     initial = {'key': 'value'}
-    template_name = 'users/register.html'
+    template_name = 'register.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
@@ -89,7 +89,8 @@ def dispatch(self, request, *args, **kwargs):
         # will redirect to the home page if a user tries to access the register page while logged in
         if request.user.is_authenticated:
             return redirect(to='/')
-
+         #else process dispatch as it otherwise normally would
+        return super(RegisterView, self).dispatch(request, *args, **kwargs)
 					# create a function
 def geeks_view(request):
     # create a dictionary
@@ -98,8 +99,7 @@ def geeks_view(request):
     }
     # return response
     return render(request, "geeks.html", context)
-        # else process dispatch as it otherwise normally would
-        return super(RegisterView, self).dispatch(request, *args, **kwargs)
+        
 
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = 'users/change_password.html'

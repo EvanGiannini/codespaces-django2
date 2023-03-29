@@ -30,8 +30,12 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#CSRF_TRUSTED_ORIGINS = ['https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000'] #'http://localhost:8000'
 
+ALLOWED_HOSTS = [
+    #'hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev',
+]
+#CORS_ORIGIN_WHITELIST = ['https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000',]
 
 # Application definition
 
@@ -43,10 +47,19 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'base.apps.BaseConfig',
+    #'users'
 
 ]
 
 MIDDLEWARE = [
+#    "django.middleware.security.SecurityMiddleware",
+#    "django.contrib.sessions.middleware.SessionMiddleware",
+#    "django.middleware.common.CommonMiddleware",
+#    "django.middleware.csrf.CsrfViewMiddleware",
+#    "django.contrib.auth.middleware.AuthenticationMiddleware",
+#    "django.contrib.messages.middleware.MessageMiddleware",
+#    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
