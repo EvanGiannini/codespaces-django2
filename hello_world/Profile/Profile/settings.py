@@ -30,7 +30,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#CSRF_TRUSTED_ORIGINS = ['https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000'] #'http://localhost:8000'
+CSRF_TRUSTED_ORIGINS = ['https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev'] #'http://localhost:8000'
 
 ALLOWED_HOSTS = [
     #'hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev',
