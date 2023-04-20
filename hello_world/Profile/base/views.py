@@ -10,8 +10,8 @@ from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 # Create your views here.
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'users/password_reset.html'
-    email_template_name = 'users/password_reset_email.html'
+    template_name = 'password_reset.html'
+    email_template_name = 'password_reset_email.html'
     subject_template_name = 'users/password_reset_subject'
     success_message = "We've emailed you instructions for setting your password, " \
                       "if an account exists with the email you entered. You should receive them shortly." \
@@ -51,7 +51,7 @@ def sign(request):
 def projects(request): #matches
     return render(request, "projects.html")
 
-#@login_required  
+@login_required  
 def profile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
