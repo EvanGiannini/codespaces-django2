@@ -17,8 +17,6 @@ from pathlib import Path
 #from dotenv import load_dotenv
 #load_dotenv()
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,8 +30,12 @@ SECRET_KEY = "django-insecure-999%w+2b!&lyo00688*5(e!kvsx%k(=by!p5w)9w^w)!oi0j9g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev'] #'http://localhost:8000'
 
+ALLOWED_HOSTS = [
+    #'hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev',
+]
+#CORS_ORIGIN_WHITELIST = ['https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000',]
 
 # Application definition
 
@@ -45,10 +47,19 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'base.apps.BaseConfig',
+    #'users'
 
 ]
 
 MIDDLEWARE = [
+#    "django.middleware.security.SecurityMiddleware",
+#    "django.contrib.sessions.middleware.SessionMiddleware",
+#    "django.middleware.common.CommonMiddleware",
+#    "django.middleware.csrf.CsrfViewMiddleware",
+#    "django.contrib.auth.middleware.AuthenticationMiddleware",
+#    "django.contrib.messages.middleware.MessageMiddleware",
+#    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -149,3 +160,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

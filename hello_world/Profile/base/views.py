@@ -2,16 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views import View
-from django.contrib.auth.views import LoginView, PasswordResetView
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 from array import *
+
+
 # Create your views here.
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'users/password_reset.html'
-    email_template_name = 'users/password_reset_email.html'
+    template_name = 'password_reset.html'
+    email_template_name = 'password_reset_email.html'
     subject_template_name = 'users/password_reset_subject'
     success_message = "We've emailed you instructions for setting your password, " \
                       "if an account exists with the email you entered. You should receive them shortly." \
@@ -22,7 +24,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 class RegisterView(View):
     form_class = RegisterForm
     initial = {'key': 'value'}
-    template_name = 'users/register.html'
+    template_name = 'register.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
@@ -43,13 +45,30 @@ class RegisterView(View):
 def home(request):
     return render(request, "home.html")
 
-@login_required  
+def sign(request):
+    return render(request, "sign.html")
+
+#@login_required  
 def projects(request): #matches
    return render(request, "projects.html")
 
 @login_required  
-def contact(request): #profile
-    return render(request, "contact.html")
+def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='users-profile')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
 
 class CustomLoginView(LoginView):
     form_class = LoginForm
@@ -71,10 +90,8 @@ def dispatch(self, request, *args, **kwargs):
         # will redirect to the home page if a user tries to access the register page while logged in
         if request.user.is_authenticated:
             return redirect(to='/')
+         #else process dispatch as it otherwise normally would
         return super(RegisterView, self).dispatch(request, *args, **kwargs)
-
-
-
 					# create a function
                 
 def projects(request):
@@ -91,3 +108,10 @@ def projects(request):
     # return response
     return render(request, "projects.html", context)
         # else process dispatch as it otherwise normally would
+    return render(request, "geeks.html", context)
+        
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'users/change_password.html'
+    success_message = "Successfully Changed Your Password"
+    success_url = reverse_lazy('users-home')
