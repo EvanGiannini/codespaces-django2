@@ -8,9 +8,27 @@
 			<center>
 			<font size="6">
 				
-<p><b>PROFILE</b></p>
+<p><b>MATCHES</b></p>
 
 			</font>
+			
+			{% for i in si %}
+			<div class="row">
+				 				<div id="project" class="project-item">
+					<img src="/static/images/PngItem_307416.png" alt="Profile" style=padding-right:10px;padding-top:5px;float:left;width:128px;height:128px;>
+					<h2>Profile 1</h2>
+	<h2>Contact: 81237931023</h2>
+					
+	<p style = overflow:hidden>You share "<td>" + i + "</td>" classes, they are (classes) </p>
+	<p style = overflow:hidden>You share __ interests, they are (interests)</p>
+	<td>${{i}}</td>
+<td>${{i}}</td>
+
+				</div> 
+			</div>
+			{% endfor %}
+
+
 				<div id="project" class="project-item">
 					<img src="/static/images/PngItem_307416.png" alt="Profile" style=padding-right:10px;padding-top:5px;float:left;width:128px;height:128px;>
 					<h2>Profile 1</h2>

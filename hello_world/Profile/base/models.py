@@ -13,3 +13,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Matches(models.Model):
+    name = models.CharField(max_length=255)
+    classes = models.TextField()
+    interests = models.TextField()

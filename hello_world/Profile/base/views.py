@@ -6,7 +6,7 @@ from django.contrib.auth.views import LoginView, PasswordResetView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import RegisterForm, LoginForm
-
+from array import *
 # Create your views here.
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
@@ -33,7 +33,6 @@ class RegisterView(View):
 
         if form.is_valid():
             form.save()
-
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')
 
@@ -46,7 +45,7 @@ def home(request):
 
 @login_required  
 def projects(request): #matches
-    return render(request, "projects.html")
+   return render(request, "projects.html")
 
 @login_required  
 def contact(request): #profile
@@ -72,14 +71,23 @@ def dispatch(self, request, *args, **kwargs):
         # will redirect to the home page if a user tries to access the register page while logged in
         if request.user.is_authenticated:
             return redirect(to='/')
+        return super(RegisterView, self).dispatch(request, *args, **kwargs)
+
+
 
 					# create a function
-def geeks_view(request):
+                
+def projects(request):
+    z = 2
+    x = 3
+    y = 82392
+    sharedInterests = [["Leah",[3,2]], ["Taylor",[1,1]]]
     # create a dictionary
-    context = {
-        "data" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    }
+    context = {"si":sharedInterests }
+    #context = {
+     #   "data" : [1,2,3,4,5],
+      #         }
+
     # return response
-    return render(request, "geeks.html", context)
+    return render(request, "projects.html", context)
         # else process dispatch as it otherwise normally would
-        return super(RegisterView, self).dispatch(request, *args, **kwargs)
