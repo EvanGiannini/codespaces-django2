@@ -2,10 +2,8 @@ from django.urls import include, path
 from django.conf.urls.static import static
 from . import views
 from .views import RegisterView, CustomLoginView, ResetPasswordView, ChangePasswordView
-
 from django.contrib.auth import views as auth_views
 from django.conf import settings
-
 
 from .forms import LoginForm
   
@@ -35,4 +33,3 @@ urlpatterns = [
     path('password-change/', ChangePasswordView.as_view(), name='password_change'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
