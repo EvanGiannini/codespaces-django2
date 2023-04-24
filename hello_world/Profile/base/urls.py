@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from django.conf.urls.static import static
 from . import views
 from .views import RegisterView, CustomLoginView, ResetPasswordView, ChangePasswordView
@@ -11,6 +11,7 @@ from .forms import LoginForm
   
 urlpatterns = [
     #path('admin/', admin.site.urls),
+    path("select2/", include("django_select2.urls")),
     path("", views.home, name="home"),
     path("sign/",views.sign, name="sign"),
     #path("projects/", views.projects, name="projects"), #matches

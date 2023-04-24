@@ -30,7 +30,7 @@ SECRET_KEY = "django-insecure-999%w+2b!&lyo00688*5(e!kvsx%k(=by!p5w)9w^w)!oi0j9g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = ['https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev'] #'http://localhost:8000'
+CSRF_TRUSTED_ORIGINS = ['https://evangiannini-zany-xylophone-g96r97jpwqjcv4gp-8000.preview.app.github.dev', 'https://hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev'] #'http://localhost:8000'
 
 ALLOWED_HOSTS = [
     #'hamilton20238874-congenial-giggle-r44jr5wrjw93xx4q-8000.preview.app.github.dev',
