@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django_select2 import forms as s2forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from .models import Profile, Entry, Classes
+from .models import Profile #Classes  #,Entry
 
 from . import models
 
@@ -105,12 +105,12 @@ class CoAuthorsWidget(s2forms.ModelSelect2MultipleWidget):
 
 class ClassesForm(forms.ModelForm):
     class Meta:
-        model = models.Entry
+        model = models.Books
         fields = "__all__"
-        #widgets = {
-        #    "author": AuthorWidget,
-        #    "co_authors": CoAuthorsWidget,
-        #}
-    def _init_(self, *args, **kwargs):
-        super()._init_(*args, **kwargs )
-        self.fields['class_level'].queryset = Classes.objects.none()
+        widgets = {
+            "author": AuthorWidget,
+            "co_authors": CoAuthorsWidget,
+        }
+   # def _init_(self, *args, **kwargs):
+    #    super()._init_(*args, **kwargs )
+     #   self.fields['class_level'].queryset = Classes.objects.none()

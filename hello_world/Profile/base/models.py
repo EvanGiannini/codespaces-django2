@@ -43,15 +43,15 @@ class Profile(models.Model):
 #    interests = models.TextField()
 
 
-class Classes(models.Model):
-    m_class_name = models.CharField(max_length=300)
+#class Classes(models.Model):
+ #   m_class_name = models.CharField(max_length=300)
     
-    def _str_(self):
-        return self.m_class_name
+ #   def _str_(self):
+  #      return self.m_class_name
 
-class Entry(models.Model): #formerly books
-    #author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    #co_authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='co_authored_by')
+class Books(models.Model): #formerly books
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    co_authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='co_authored_by')
 
-    class_name = models.ForeignKey(Classes, on_delete=models.CASCADE, verbose_name="Class Name")
-    class_level = models.CharField(max_length=10, verbose_name="Class Level") #Honors, Advanced, CP, AP
+    #class_name = models.ForeignKey(Classes, on_delete=models.CASCADE, verbose_name="Class Name")
+    #class_level = models.CharField(max_length=10, verbose_name="Class Level") #Honors, Advanced, CP, AP

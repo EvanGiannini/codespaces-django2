@@ -11,7 +11,7 @@ from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 from array import *
 from . import forms, models
 
-from flask import request
+#from flask import request
 
 from django.http import JsonResponse
 from .forms import ClassesForm
@@ -127,9 +127,9 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     success_url = reverse_lazy('users-home')
 
 class UpdateClassesView(generic.CreateView):
-    form = ClassesForm(instance=models.Entry.objects.first())
+    #form = ClassesForm(instance=models.Entry.objects.first())
     template_name = 'update_classes.html'
-    model = models.Entry
+    model = models.Books
     form_class = forms.ClassesForm
     success_url = "profile/"
 
