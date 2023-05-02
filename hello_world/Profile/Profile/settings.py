@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'base.apps.BaseConfig',
+    'django_select2',
     #'users'
 
 ]
@@ -76,6 +77,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / 'templates',
+            #BASE_DIR / "hello_world" / "Profile" / "base" / "templates" 
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -163,3 +165,17 @@ EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+#CACHES = {
+    # … default cache config and others
+#    "select2": {
+#        "BACKEND": "django_redis.cache.RedisCache",
+#        "LOCATION": "redis://127.0.0.1:6379/2",
+#        "OPTIONS": {
+#            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#        }
+#    }
+#}
+
+# Tell select2 which cache configuration to use:
+#SELECT2_CACHE_BACKEND = "select2"

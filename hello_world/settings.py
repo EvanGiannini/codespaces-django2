@@ -63,7 +63,9 @@ ROOT_URLCONF = "hello_world.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "hello_world" / "templates"],
+        "DIRS": [BASE_DIR / "hello_world" / "templates"
+                 #BASE_DIR / "hello_world" / "Profile" / "base" / "templates" 
+                 ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -148,3 +150,17 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = str(os.getenv('EMAIL_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_PASSWORD'))
+
+#CACHES = {
+#    # … default cache config and others
+#    "select2": {
+#        "BACKEND": "django_redis.cache.RedisCache",
+#        "LOCATION": "redis://127.0.0.1:6379/2",
+#        "OPTIONS": {
+#            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#        }
+#    }
+#}
+
+# Tell select2 which cache configuration to use:
+#SELECT2_CACHE_BACKEND = "select2"

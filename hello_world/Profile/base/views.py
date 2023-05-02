@@ -1,15 +1,25 @@
+import json
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views import View
+from django.views import View, generic
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 from array import *
+from . import forms, models
 
+from flask import request
+
+from django.http import JsonResponse
+from .forms import ClassesForm
+#from .models import 
 
 # Create your views here.
+
+
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'password_reset.html'
@@ -115,3 +125,23 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = 'users/change_password.html'
     success_message = "Successfully Changed Your Password"
     success_url = reverse_lazy('users-home')
+
+class UpdateClassesView(generic.CreateView):
+    form = ClassesForm(instance=models.Entry.objects.first())
+    template_name = 'update_classes.html'
+    model = models.Entry
+    form_class = forms.ClassesForm
+    success_url = "profile/"
+
+    
+
+    #if request.is_ajax():
+    #    term = request.GET.get('term')
+    #    Entry = Classes.objects.all().filter(title__icontains=term)
+    #    return JsonResponse(list(Entry.values()), safe=False)
+    #if request.method == 'POST':
+    #    form = ClassesForm(request.POST, instance= models.Entry.objects.first())
+    #    if form.is_valid():
+    #        form.save()
+    #        return redirect('profile/')
+    #return render(request, 'update_classes.html', {'form': form})
