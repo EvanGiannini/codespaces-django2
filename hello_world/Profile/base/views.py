@@ -127,10 +127,10 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     success_url = reverse_lazy('users-home')
 
 class UpdateClassesView(generic.CreateView):
-    form = ClassesForm(instance=models.Entry.objects.first())
+    #form = ClassesForm #instance=models.Books.objects.first()
     template_name = 'update_classes.html'
-    model = models.Entry
-    form_class = forms.ClassesForm
+    model = models.Books
+    form_class = ClassesForm
     success_url = "profile/"
 
     
